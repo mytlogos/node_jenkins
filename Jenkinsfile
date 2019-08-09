@@ -1,9 +1,24 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
+        stage('build-windows') {
+            when {
+                expression {
+                    !isUnix
+                }
+            }
             steps {
-                bat 'echo "building"'
+                bat 'echo "building on windows"'
+            }
+        }
+        stage('build-unix') {
+            when {
+                expression {
+                    isUnix
+                }
+            }
+            steps {
+                sh 'echo "building on unix"'
             }
         }
         stage('post-build'){
