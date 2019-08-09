@@ -1,26 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('build-windows') {
-            when {
-                not {
-                    expression {
-                        isUnix
-                    }
-                }
-            }
+        stage('build') {
             steps {
-                bat 'echo "building on windows"'
-            }
-        }
-        stage('build-unix') {
-            when {
-                expression {
-                    isUnix
-                }
-            }
-            steps {
-                sh 'echo "building on unix"'
+                bat 'copy "%userprofile%\\file.bat" file.bat'
+                bat 'echo "copied file bat"'
             }
         }
         stage('post-build'){
