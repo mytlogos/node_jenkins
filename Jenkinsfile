@@ -3,7 +3,11 @@ pipeline {
     stages {
         stage('build-windows') {
             when {
-                not { isUnix }
+                not {
+                    expression {
+                        isUnix
+                    }
+                }
             }
             steps {
                 bat 'echo "building on windows"'
@@ -11,7 +15,9 @@ pipeline {
         }
         stage('build-unix') {
             when {
-                isUnix
+                expression {
+                    isUnix
+                }
             }
             steps {
                 sh 'echo "building on unix"'
@@ -26,7 +32,6 @@ pipeline {
             steps {
                  bat 'echo "post build"'
             }
-
         }
     }
 }
