@@ -1,7 +1,7 @@
 node {
     stage("build"){
         if (isUnix()){
-            sh 'cp ~\\file.bat file.bat'
+            sh 'cp ~/file.bat file.bat'
             sh 'echo "copied file bat on unix"'
         }else{
             bat 'copy "%userprofile%\\file.bat" file.bat'
@@ -13,8 +13,7 @@ node {
             if (isUnix()){
                 sh 'echo "post build on unix"'
             }else{
-                bat 'copy "%userprofile%\\file.bat" file.bat'
-                bat 'echo "copied file bat on windows"'
+                bat 'echo "post build on windows"'
             }
         }
     }
