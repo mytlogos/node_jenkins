@@ -1,11 +1,13 @@
 node {
     stage("build"){
         if (isUnix()){
-            sh 'cp ~/file.bat file.bat'
             sh 'echo "copied file bat on unix"'
+            sh '$PATH'
+            sh 'npm -v'
         }else{
             bat 'copy "%userprofile%\\file.bat" file.bat'
             bat 'echo "copied file bat on windows"'
+            bat 'npm -v'
         }
     }
     stage("post-build"){
